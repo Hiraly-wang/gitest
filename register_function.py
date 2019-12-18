@@ -13,14 +13,15 @@ import time
 from PIL import Image
 from selenium import webdriver
 
-import lianzhong_api
-from find_element import FindElement
+from base import lianzhong_api
+from base.find_element import FindElement
 
 
 class Register():
 
     def __init__(self, url, i):
         self.driver = self.get_driver(url, i)
+
     '''
         初始化driver打开url
     '''

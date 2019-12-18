@@ -7,13 +7,14 @@
 import configparser
 
 
-class ReadIni():
-    '''
+class ReadIni(object):
+    """
         初始化类，设置默认值
-    '''
+    """
+
     def __init__(self, filename=None, node=None):
         if filename == None:
-            filename = r'E:\Other Document\Py_Project\Python3_proj\5itest\config\LocalElment.ini'
+            filename = r'E:\Other Document\Py_Project\Python3_proj\5itest\config\LocalElement.ini'
         if node == None:
             self.node = 'RegisterElement'
         else:
@@ -23,13 +24,16 @@ class ReadIni():
     '''
         加载配置文件
     '''
+
     def Load_ini(self, filename):
         cf = configparser.ConfigParser()
         cf.read(filename)
         return cf
+
     '''
         获取配置文件内容
     '''
+
     def getValue(self, key):
         return self.cf.get(self.node, key)
 

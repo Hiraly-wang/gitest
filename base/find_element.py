@@ -31,5 +31,5 @@ class FindElement():
             else:
                 return self.driver.find_element_by_name(value)
         except:
-            print('找不到元素',by+'>'+value)
+            print('找不到元素', by + '>' + value)
             return None

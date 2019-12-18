@@ -9,7 +9,7 @@ import random
 import string
 from PIL import Image
 from selenium import webdriver
-import lianzhong_api
+from base import lianzhong_api
 
 driver = webdriver.Chrome()
 '''
