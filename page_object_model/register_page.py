@@ -14,7 +14,7 @@ from selenium import webdriver
 
 
 class RegisterPage(object):
-
+    # 初始化元素查找类，执行该类的时候就会加载
     def __init__(self, driver):
         self.fe = FindElement(driver)
 
@@ -23,20 +23,24 @@ class RegisterPage(object):
         return self.fe.get_element('register_email')
 
     # 查找用户名
-    def input_username(self):
+    def get_username(self):
         return self.fe.get_element('username')
 
     # 查找密码
-    def input_password(self):
+    def get_password(self):
         return self.fe.get_element('password')
-
-    # 查找验证码输入框
-    def input_code_text(self):
-        return self.fe.get_element('code_text')
 
     # 识别验证码图片
     def verify_code(self):
         return self.fe.get_element('code_img')
+
+    # 查找验证码输入框
+    def get_code_text(self):
+        return self.fe.get_element('code_text')
+
+    # 查找注册按钮
+    def get_register_btn(self):
+        return self.fe.get_element('register_btn')
 
 
 if __name__ == '__main__':
@@ -44,5 +48,8 @@ if __name__ == '__main__':
     driver = webdriver.Chrome()
     driver.get(register_url)
     rp = RegisterPage(driver)
+    rp.get_register_email()
+    rp.get_username()
+    rp.get_code_text()
     time.sleep(2)
     driver.close()

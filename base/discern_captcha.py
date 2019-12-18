@@ -5,11 +5,11 @@
 # @File    : discern_captcha.py
 # @Software: PyCharm
 
-"""验证码识别"""
 from PIL import Image
 from selenium import webdriver
 from api import lianzhong_api
 
+"""验证码识别"""
 
 class VerifyCode(object):
 
