@@ -13,7 +13,7 @@ import time
 from PIL import Image
 from selenium import webdriver
 
-from base import lianzhong_api
+from api import lianzhong_api
 from base.find_element import FindElement
 
 
@@ -84,8 +84,8 @@ class Register():
 
     def verify_code(self, api_username, api_password, file_name, api_post_url, yzm_min, yzm_max, yzm_type, tools_token):
 
-        code = lianzhong_api.main(api_username, api_password, file_name, api_post_url, yzm_min, yzm_max, yzm_type,
-                                  tools_token)
+        code = lianzhong_api.api_verify_code(api_username, api_password, file_name, api_post_url, yzm_min, yzm_max,
+                                             yzm_type, tools_token)
         print(code)
         return code
 

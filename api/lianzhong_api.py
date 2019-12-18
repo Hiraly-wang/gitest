@@ -1,12 +1,13 @@
 # coding: utf-8
 import requests
-import json
+
 '''
     使用联众打码平台API进行在线识别验证码
 '''
 
-def main(api_username, api_password, file_name, api_post_url, yzm_min, yzm_max, yzm_type, tools_token):
-    '''
+
+def api_verify_code(api_username, api_password, file_name, api_post_url, yzm_min, yzm_max, yzm_type, tools_token):
+    """
             main() 参数介绍
             api_username    （API账号）             --必须提供
             api_password    （API账号密码）         --必须提供
@@ -16,7 +17,7 @@ def main(api_username, api_password, file_name, api_post_url, yzm_min, yzm_max, 
             yzm_max         （识别结果最大长度值）        --可空提供
             yzm_type        （识别类型）          --可空提供
             tools_token     （工具或软件token）     --可空提供
-    '''
+    """
     # api_username ='warflor'
     # api_password = 'lianzhong0608.'
     # file_name = 'E:/code.png'
@@ -54,16 +55,20 @@ def main(api_username, api_password, file_name, api_post_url, yzm_min, yzm_max, 
     # r = s.post(api_post_url, headers=headers, data=data, files=files, verify=False, proxies=proxies)
     r = s.post(api_post_url, headers=headers, data=data, files=files, verify=False)
     # print(r.text)
-    result=r.json()
-    code=result['data']['val']
+    result = r.json()
+    code = result['data']['val']
     # print(code)
     return code
+
+
 # 下载验证码
-'''
-def download_vcode():
+
+def download_code():
     try:
         url = 'http://www.5itest.cn/captcha_num?0.4733862790517711'
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                          '(KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
         s = requests.session()
         resp = s.get(url, headers=headers, verify=False)
         file_name = 'E:/code.png'
@@ -71,18 +76,18 @@ def download_vcode():
             f.write(resp.content)
     except Exception as e:
         print(e)
-'''
+
 
 if __name__ == '__main__':
-    # download_vcode()
-    main('warflor',
-         'lianzhong0608.',
-         './code.png',
-         "http://v1-http-api.jsdama.com/api.php?mod=php&act=upload",
-         '1',
-         '8',
-         '1013',
-         '')
+    download_code()
+    verify_code('warflor',
+                'lianzhong0608.',
+                './code.png',
+                "http://v1-http-api.jsdama.com/api.php?mod=php&act=upload",
+                '1',
+                '8',
+                '1013',
+                '')
 
     '''
 		main() 参数介绍
