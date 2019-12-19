@@ -109,7 +109,7 @@ class Register():
         self.get_user_element('register_btn').click()
         # 验证码输入错误，保存截图
         code_error = self.get_user_element('code_text_error')
-        if code_error == None:
+        if code_error is None:
             print('注册成功！')
         else:
             print('注册失败')

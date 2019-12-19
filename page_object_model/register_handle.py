@@ -14,7 +14,7 @@ from page_object_model.register_page import RegisterPage
 
 class RegisterHandler(object):
 
-    def __int__(self, driver):
+    def __init__(self, driver):
         self.rp = RegisterPage(driver)
 
     # 输入邮箱号
@@ -32,6 +32,10 @@ class RegisterHandler(object):
     # 输入验证码
     def input_code_text(self, code_text):
         self.rp.get_code_text().send_keys(code_text)
+
+    # 获取注册按钮的文字信息
+    def get_register_btn_text(self):
+        self.rp.get_register_btn().text()
 
     # 点击注册按钮
     def click_register_btn(self):

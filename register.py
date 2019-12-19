@@ -7,8 +7,10 @@
 
 import random
 import string
+
 from PIL import Image
 from selenium import webdriver
+
 from api import lianzhong_api
 
 driver = webdriver.Chrome()
@@ -98,5 +100,7 @@ def main():
         '1013',
         '')
     find_element('//*[@id="captcha_code"]').send_keys(code)
+
+
 if __name__ == '__main__':
     main()

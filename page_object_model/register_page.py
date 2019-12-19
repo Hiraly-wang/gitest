@@ -5,8 +5,10 @@
 # @File    : register_page.py
 # @Software: PyCharm
 import time
-from base.find_element import FindElement
+
 from selenium import webdriver
+
+from base.find_element import FindElement
 
 """
      此页面主要是查找注册页面中正常的元素和异常的元素（错误的提示信息）
@@ -42,6 +44,9 @@ class RegisterPage(object):
     def get_register_btn(self):
         return self.fe.get_element('register_btn')
 
+    def email_error(self):
+        return self.fe.get_element()
+
 
 if __name__ == '__main__':
     register_url = 'http://www.5itest.cn/register'
@@ -49,7 +54,9 @@ if __name__ == '__main__':
     driver.get(register_url)
     rp = RegisterPage(driver)
     rp.get_register_email()
+    print('找到email')
     rp.get_username()
+    print('找到username')
     rp.get_code_text()
     time.sleep(2)
     driver.close()
