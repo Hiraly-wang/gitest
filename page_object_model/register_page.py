@@ -44,12 +44,45 @@ class RegisterPage(object):
     def get_register_btn(self):
         return self.fe.get_element('register_btn')
 
-    def email_error(self):
-        return self.fe.get_element()
+    # 邮箱输入框提示信息
+    def get_email_placeholder(self):
+        print(self.fe.get_element('register_email').get_attribute('placeholder'))
+        return self.fe.get_element('register_email').get_attribute('placeholder')
+
+    # 用户名输入框提示信息
+    def get_username_placeholder(self):
+        print(self.fe.get_element('username').get_attribute('placeholder'))
+        return self.fe.get_element('username').get_attribute('placeholder')
+
+    # 密码输入框提示信息
+    def get_password_placeholder(self):
+        print(self.fe.get_element('password').get_attribute('placeholder'))
+        return self.fe.get_element('password').get_attribute('placeholder')
+
+    # 验证码输入框提示信息
+    def get_code_text_placeholder(self):
+        print(self.fe.get_element('code_text').get_attribute('placeholder'))
+        return self.fe.get_element('code_text').get_attribute('placeholder')
+
+    # 查找邮箱错误信息
+    def get_email_error(self):
+        return self.fe.get_element('register_email_error')
+
+    # 查找用户名错误信息
+    def get_username_error(self):
+        return self.fe.get_element('register_username_error')
+
+    # 查找密码错误信息
+    def get_password_error(self):
+        return self.fe.get_element('register_password_error')
+
+    # 查找验证码错误信息
+    def get_code_error(self):
+        return self.fe.get_element('captcha_code_error')
 
 
 if __name__ == '__main__':
-    register_url = 'http://www.5itest.cn/register'
+    register_url = r'http://www.5itest.cn/register'
     driver = webdriver.Chrome()
     driver.get(register_url)
     rp = RegisterPage(driver)
@@ -57,6 +90,9 @@ if __name__ == '__main__':
     print('找到email')
     rp.get_username()
     print('找到username')
-    rp.get_code_text()
+    rp.get_email_placeholder()
+    rp.get_username_placeholder()
+    rp.get_password_placeholder()
+    rp.get_code_text_placeholder()
     time.sleep(2)
     driver.close()

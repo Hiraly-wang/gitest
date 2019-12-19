@@ -6,7 +6,9 @@
 # @Software: PyCharm
 
 import time
+
 from selenium import webdriver
+
 from page_object_model.register_page import RegisterPage
 
 """上一层我们获取到注册页面中主要元素信息，接下来就该给这些元素进行数据上的操作处理（赋值）"""
@@ -37,6 +39,21 @@ class RegisterHandler(object):
     def get_register_btn_text(self):
         self.rp.get_register_btn().text()
 
+    # 获取错误信息
+    def get_error_info(self, error_info, error_value):
+        text = None
+        if error_info == 'register_email_error':
+            text = self.rp.get_email_error()
+        elif error_info == 'register_username_error':
+            text = self.rp.get_username_error()
+        elif error_info == 'register_password_error':
+            text = self.rp.get_password_error()
+        elif error_info == 'captcha_code_error':
+            text = self.rp.get_code_error()
+        else:
+            print('error element not find')
+        return text
+
     # 点击注册按钮
     def click_register_btn(self):
         self.rp.get_register_btn().click()
@@ -51,6 +68,7 @@ if __name__ == '__main__':
     rh.input_username('username')
     rh.input_password('123@16')
     rh.input_code_text('code')
+    rh.get_error_info()
     rh.click_register_btn()
     time.sleep(5)
     driver.close()
