@@ -4,12 +4,14 @@
 # @Email   : 415892223@qq.com
 # @File    : discern_captcha.py
 # @Software: PyCharm
+import time
 
 from PIL import Image
-from selenium import webdriver
+
 from api import lianzhong_api
 
 """验证码识别"""
+
 
 class VerifyCode(object):
 
@@ -32,6 +34,7 @@ class VerifyCode(object):
         img = im.crop((x0, y0, x1, y1))
         # 保存图片
         img.save(file_name)
+        time.sleep(2)
         return file_name
 
     '''
@@ -40,4 +43,4 @@ class VerifyCode(object):
 
     def verify_code(self, api_username, api_password, file_name, api_post_url, yzm_min, yzm_max, yzm_type, tools_token):
         return lianzhong_api.api_verify_code(api_username, api_password, file_name, api_post_url, yzm_min, yzm_max,
-                                         yzm_type, tools_token)
+                                             yzm_type, tools_token)

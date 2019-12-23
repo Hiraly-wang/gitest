@@ -20,11 +20,11 @@ class RegisterBusiness(object):
         self.rh = RegisterHandler(driver)
 
     # 输入用户信息
-    def input_user_info(self, email, username, password, code_text):
+    def input_user_info(self, email, username, password, filename):
         self.rh.input_email(email)
         self.rh.input_username(username)
         self.rh.input_password(password)
-        self.rh.input_code_text(code_text)
+        self.rh.input_code_text(filename)
         self.rh.click_register_btn()
 
     # 判断是否注册成功
@@ -37,8 +37,8 @@ class RegisterBusiness(object):
             return False
 
     # 邮箱格式错误
-    def email_format_error(self, email, username, password, code_text):
-        self.input_user_info(email, username, password, code_text)
+    def email_format_error(self, email, username, password, filename):
+        self.input_user_info(email, username, password, filename)
         if self.rh.get_error_info('register_email_error', '请输入有效的电子邮件地址') is not None:
             print('邮箱格式错误')
             return True
@@ -46,8 +46,8 @@ class RegisterBusiness(object):
             return False
 
     # 没有输入邮箱错误
-    def email_null_error(self, email, username, password, code_text):
-        self.input_user_info(email, username, password, code_text)
+    def email_null_error(self, email, username, password, filename):
+        self.input_user_info(email, username, password, filename)
         if self.rh.get_error_info('register_email_error', '请输入邮箱') is not None:
             print('没有输入邮箱')
             return True
@@ -64,8 +64,8 @@ class RegisterBusiness(object):
             return False
 
     #  没有输入用户名错误
-    def username_null_error(self, email, username, password, code_text):
-        self.input_user_info(email, username, password, code_text)
+    def username_null_error(self, email, username, password, filename):
+        self.input_user_info(email, username, password, filename)
         if self.rh.get_error_info('register_username_error', '字符长度必须大于等于4，一个中文字算2个字符') is not None:
             print('没有输入用户名错误')
             return True
@@ -73,8 +73,8 @@ class RegisterBusiness(object):
             return False
 
     # 用户名重复错误
-    def username_repeat_error(self, email, username, password, code_text):
-        self.input_user_info(email, username, password, code_text)
+    def username_repeat_error(self, email, username, password, filename):
+        self.input_user_info(email, username, password, filename)
         if self.rh.get_error_info('register_username_error', '名称已存在!') is not None:
             print('用户名重复错误')
             return True
@@ -82,8 +82,8 @@ class RegisterBusiness(object):
             return False
 
     # 密码过长错误
-    def password_len_big_error(self, email, username, password, code_text):
-        self.input_user_info(email, username, password, code_text)
+    def password_len_big_error(self, email, username, password, filename):
+        self.input_user_info(email, username, password, filename)
         if self.rh.get_error_info('register_password_error', '最多只能输入 20 个字符') is not None:
             print('密码过长错误')
             return True
@@ -91,8 +91,8 @@ class RegisterBusiness(object):
             return False
 
     # 密码过短错误
-    def password_len_tiny_error(self, email, username, password, code_text):
-        self.input_user_info(email, username, password, code_text)
+    def password_len_tiny_error(self, email, username, password, filename):
+        self.input_user_info(email, username, password, filename)
         if self.rh.get_error_info('register_password_error', '最多只能输入 20 个字符') is not None:
             print('密码过短错误')
             return True
@@ -100,8 +100,8 @@ class RegisterBusiness(object):
             return False
 
     # 没有输入密码错误
-    def password_null_error(self, email, username, password, code_text):
-        self.input_user_info(email, username, password, code_text)
+    def password_null_error(self, email, username, password, filename):
+        self.input_user_info(email, username, password, filename)
         if self.rh.get_error_info('register_password_error', '请输入密码') is not None:
             print('没有输入密码错误')
             return True
@@ -109,8 +109,8 @@ class RegisterBusiness(object):
             return False
 
     # 验证码错误
-    def code_null_error(self, email, username, password, code_text):
-        self.input_user_info(email, username, password, code_text)
+    def code_null_error(self, email, username, password, filename):
+        self.input_user_info(email, username, password, filename)
         if self.rh.get_error_info('captcha_code_error', '请输入验证码') is not None:
             print('没有输入验证码错误')
             return True
@@ -118,10 +118,18 @@ class RegisterBusiness(object):
             return False
 
     # 验证码输入错误
-    def code_value_error(self, email, username, password, code_text):
-        self.input_user_info(email, username, password, code_text)
+    def code_value_error(self, email, username, password, filename):
+        self.input_user_info(email, username, password, filename)
         if self.rh.get_error_info('captcha_code_error', '验证码错误') is not None:
             print('验证码输入错误')
+            return True
+        else:
+            return False
+
+    # 整个注册流程，test_element:提示错误信息的元素，tip_msg:错误提示信息
+    def register_func(self, email, username, password, code, test_element, tip_msg):
+        self.input_user_info(email, username, password, code)
+        if self.rh.get_error_info(test_element,tip_msg) is not None:
             return True
         else:
             return False

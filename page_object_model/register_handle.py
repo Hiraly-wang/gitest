@@ -8,7 +8,7 @@
 import time
 
 from selenium import webdriver
-
+from base.discern_captcha import VerifyCode
 from page_object_model.register_page import RegisterPage
 
 """上一层我们获取到注册页面中主要元素信息，接下来就该给这些元素进行数据上的操作处理（赋值）"""
@@ -32,8 +32,10 @@ class RegisterHandler(object):
         self.rp.get_password().send_keys(password)
 
     # 输入验证码
-    def input_code_text(self, code_text):
-        self.rp.get_code_text().send_keys(code_text)
+    def input_code_text(self, filename):
+        get_code_text = VerifyCode()
+        code = get_code_text.verify_code(filename)
+        self.rp.get_code_text().send_keys(code)
 
     # 获取注册按钮的文字信息
     def get_register_btn_text(self):
@@ -42,16 +44,19 @@ class RegisterHandler(object):
     # 获取错误信息
     def get_error_info(self, error_info, error_value):
         text = None
-        if error_info == 'register_email_error':
-            text = self.rp.get_email_error()
-        elif error_info == 'register_username_error':
-            text = self.rp.get_username_error()
-        elif error_info == 'register_password_error':
-            text = self.rp.get_password_error()
-        elif error_info == 'captcha_code_error':
-            text = self.rp.get_code_error()
-        else:
-            print('error element not find')
+        try:
+            if error_info == 'register_email_error':
+                text = self.rp.get_email_error().text
+            elif error_info == 'register_username_error':
+                text = self.rp.get_username_error().text
+            elif error_info == 'register_password_error':
+                text = self.rp.get_password_error().text
+            elif error_info == 'captcha_code_error':
+                text = self.rp.get_code_error().text
+            else:
+                print('error element not find')
+        except:
+            text = None
         return text
 
     # 点击注册按钮
