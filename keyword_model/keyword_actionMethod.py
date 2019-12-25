@@ -51,8 +51,12 @@ class ActionMethod(object):
         time.sleep(3)
 
     # 关闭浏览器
-    def close_browser(self ):
+    def close_browser(self):
         self.driver.close()
+
+    # 获取页面title
+    def get_title(self):
+        return self.driver.title
 
 
 if __name__ == '__main__':

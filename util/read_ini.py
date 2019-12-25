@@ -16,7 +16,7 @@ class ReadIni(object):
 
     def __init__(self, filename=None, node=None):
         if filename is None:
-            filename = r'E:\Other Document\Py_Project\Python3_proj\5itest\config\LocalElement.ini'
+            filename = r'F:/Python_project/gitest/config/LocalElement.ini'
         if node is None:
             self.node = 'RegisterElement'
         else:

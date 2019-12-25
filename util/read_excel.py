@@ -13,7 +13,7 @@ class ReadExcel(object):
     def __init__(self, excel_path=None, index=None):
         # print(os.getcwd())
         if excel_path is None:
-            self.excel_path = 'config/test_case.xls'
+            self.excel_path = '../config/test_case.xls'
             self.index = 0
         else:
             self.excel_path = excel_path
@@ -52,7 +52,7 @@ class ReadExcel(object):
         return None
 
     # 写入数据,表格是从0行0列开始计算的
-    def write_data(self, row, col, value):
+    def write_value(self, row, col, value):
         read_data = xlrd.open_workbook(self.excel_path)
         write_data = copy(read_data)
         write_data.get_sheet(self.index).write(row, col, value)
@@ -65,4 +65,4 @@ if __name__ == '__main__':
     print(re.get_data())
     print(re.get_lines())
     print(re.get_cell(1, 1))
-    re.write_data(4, 5, '通过外部添加')
+    # re.write_data(4, 5, '通过外部添加')
