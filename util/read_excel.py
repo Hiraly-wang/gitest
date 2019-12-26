@@ -7,10 +7,9 @@
 import xlrd
 from xlutils.copy import copy
 
-
 class ReadExcel(object):
 
-    def __init__(self, excel_path=None, index=None):
+    def __init__(self, excel_path=None, index=0):
         # print(os.getcwd())
         if excel_path is None:
             self.excel_path = '../config/test_case.xls'

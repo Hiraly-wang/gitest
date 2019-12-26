@@ -29,7 +29,7 @@ class ActionMethod(object):
         self.driver.get(url)
 
     # 定位元素
-    def get_element(self, key):
+    def get_elements(self, key):
         # 获取元素
         print('获取元素', key)
         # print(self.driver)
@@ -39,12 +39,12 @@ class ActionMethod(object):
 
     # 输入元素
     def input_element(self, value, key):
-        element = self.get_element(key)
+        element = self.get_elements(key)
         element.send_keys(value)
 
     # 点击元素
     def click_element(self, key):
-        self.get_element(key).click()
+        self.get_elements(key).click()
 
     # 等待
     def sleep_time(self):
